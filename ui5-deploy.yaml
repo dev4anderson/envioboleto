@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: '2.4'
+metadata:
+  name: 'envioboleto'
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://fiori-dev.meta.com.br/
+          client: "100"
+        app:
+          name: ZZ1_ENVIOBOLETO
+          description: null
+          package: ZFI_ENVIA_BOLETO
+          transport: S4DK900544

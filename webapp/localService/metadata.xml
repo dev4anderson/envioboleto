@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://fiori-dev.meta.com.br:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zui_envia_boleto" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZC_FI_ENVIA_BOLETOType" sap:label="Projection Envio/Download Boleto" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Empresa"/>
+                    <PropertyRef Name="NumDocumento"/>
+                    <PropertyRef Name="Exercicio"/>
+                    <PropertyRef Name="ItemDocumento"/>
+                </Key>
+                <Property Name="enviaEmail_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Empresa" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Empresa"/>
+                <Property Name="NumDocumento" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Lançamento contábil"/>
+                <Property Name="Exercicio" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Exercício"/>
+                <Property Name="ItemDocumento" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Item visão lçto." sap:quickinfo="Item de visão de lançamento de partida individual"/>
+                <Property Name="Cliente" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+                <Property Name="Referencia" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="ID de referência de documento"/>
+                <Property Name="Descricao" Type="Edm.String" MaxLength="50" sap:label="Texto de item"/>
+                <Property Name="DataDocumento" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Dt.lnçmto.cont." sap:quickinfo="Data do lançamento contábil"/>
+                <Property Name="DataVencimento" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Vencimento líquido"/>
+                <Property Name="Moeda" Type="Edm.String" MaxLength="5" sap:label="Moeda da transação" sap:semantics="currency-code"/>
+                <Property Name="Montante" Type="Edm.Decimal" Precision="24" Scale="3" sap:unit="Moeda" sap:label="Mont.moeda transação" sap:quickinfo="Montante na moeda de transação"/>
+                <Property Name="NossoNumero" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="ID referência 3 por parceiro de negócios" sap:quickinfo="ID de referência 3 por parceiro de negócios"/>
+                <Property Name="ChaveBanco" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="Banco da empresa" sap:quickinfo="Chave do banco da empresa"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SourceLedger" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Ledger fonte"/>
+                <Property Name="Ledger" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Ledger" sap:quickinfo="Ledger na contabilidade geral"/>
+                <Property Name="LedgerGLLineItem" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Item part.individual" sap:quickinfo="Item de partida individual de ledger"/>
+            </EntityType>
+            <ComplexType Name="DummyFunctionImportResult">
+                <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="Verdadeiro"/>
+            </ComplexType>
+            <EntityContainer Name="cds_zui_envia_boleto_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZC_FI_ENVIA_BOLETO" EntityType="cds_zui_envia_boleto.ZC_FI_ENVIA_BOLETOType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <FunctionImport Name="enviaEmail" ReturnType="cds_zui_envia_boleto.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_zui_envia_boleto.ZC_FI_ENVIA_BOLETOType" sap:applicable-path="enviaEmail_ac">
+                    <Parameter Name="Empresa" Type="Edm.String" Mode="In" MaxLength="4"/>
+                    <Parameter Name="NumDocumento" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="Exercicio" Type="Edm.String" Mode="In" MaxLength="4"/>
+                    <Parameter Name="ItemDocumento" Type="Edm.String" Mode="In" MaxLength="3"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="cds_zui_envia_boleto.cds_zui_envia_boleto_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zui_envia_boleto.cds_zui_envia_boleto_Entities/ZC_FI_ENVIA_BOLETO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>enviaEmail_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>enviaEmail_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://fiori-dev.meta.com.br:443/sap/opu/odata/sap/ZUI_O2_ENVIO_BOLETO/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://fiori-dev.meta.com.br:443/sap/opu/odata/sap/ZUI_O2_ENVIO_BOLETO/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
