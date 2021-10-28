@@ -17,7 +17,7 @@ function (){
                            "empresa='" + mSelectedData.Empresa +"'," + 
                            "documento='" + mSelectedData.NumDocumento +"'," +
                            "exercicio='" + mSelectedData.Exercicio +"'," + 
-                           "item='00" + mSelectedData.ItemDocumento +"'" ;
+                           "item='" + mSelectedData.ItemDocumento +"'" ;
                 }, "");
             }    
 
@@ -25,7 +25,7 @@ function (){
     Chama serviço gateway (SEGW) 
 =================================================================== */
 
-            var vServiceURL = "/sap/opu/data/SAP/ZFI_BOLETO_SRV/";
+            var vServiceURL = "/sap/opu/odata/SAP/ZFI_BOLETO_SRV/";
             var oModel = new sap.ui.model.odata.ODataModel(vServiceURL, false);
 
             var vServiceUrlRead = "pdfset("+ vChave + ")/$value";
@@ -36,8 +36,8 @@ function (){
 =================================================================== */                
                 function(oData){
 
-                    var sSource = '' + oData.url;
-                    var opdfViewer = new sap.m.PDFViewer    (); 
+                    var sSource = vServiceURL + vServiceUrlRead;
+                    var opdfViewer = new sap.m.PDFViewer(); 
                     this.getView().addDependent(opdfViewer); 
                     opdfViewer.setSource(sSource); 
                     opdfViewer.setTitle("My PDF"); 
