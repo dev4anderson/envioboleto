@@ -8,10 +8,20 @@ function (){
     Recupera a linha selecionada 
 =================================================================== */
             var oSelection = this.extensionAPI.getSelectedContexts();
+            var vChave = '';
+
+            if(oSelection.length > 1){
+                alert('Selecionar apenas uma linha para a geração de boleto');
+                return;
+            }   
 
             if(oSelection.length > 0){
-                var vChave =  oSelection.reduce(function(sText,oSelectedContext){
+                vChave =  oSelection.reduce(function(sText,oSelectedContext){
                     var mSelectedData = oSelectedContext.getObject();
+
+                    if(mSelectedData.NossoNumero == ''){
+                        return; 
+                    }
 
                     return sText + 
                            "empresa='" + mSelectedData.Empresa +"'," + 
@@ -19,13 +29,18 @@ function (){
                            "exercicio='" + mSelectedData.Exercicio +"'," + 
                            "item='" + mSelectedData.ItemDocumento +"'" ;
                 }, "");
-            }    
+            }
+
+            if(!vChave){
+                alert('Boleto não disponível');
+                return;
+            }
 
 /* =================================================================== 
     Chama serviço gateway (SEGW) 
 =================================================================== */
 
-            var vServiceURL = "/sap/opu/odata/SAP/ZFI_BOLETO_SRV/";
+            var vServiceURL = "/sap/opu/odata/SAP/ZFI_BOLETO_SRV_SRV/";
             var oModel = new sap.ui.model.odata.ODataModel(vServiceURL, false);
 
             var vServiceUrlRead = "pdfset("+ vChave + ")/$value";
